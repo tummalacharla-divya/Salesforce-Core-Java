@@ -1,0 +1,67 @@
+Exception handling:
+==================
+to handle the exception we use some blocks and keywords:
+
+1. try block:
+	if there is a chance of any exception in a code, then enclose that code in the try block.
+2. catch block:
+	if try block encounter an exception, then try block will throw the exception to the catch block and catch block will handle the exception
+	try{
+	
+	}catch(Exception e){
+		//handle the exception
+	}
+	
+finally block:
+	this block is used to cleanup the resources, close the connections and close the files.
+	this block will always be executed irrespective of an exception occurs or not.
+	
+	try{
+	}
+	finally{
+		//it will always execute
+	}
+	
+	or
+	
+	try{
+	}catch(){
+	}
+	finally{
+	}
+	
+	
+throws keyword:
+==============
+it is used to throw the exception to the calling method. it will not handle the exception. it is used on the method signature.
+
+Syntax:
+-------
+public in divide(int a, int b) throws ArithematicException{
+	if(b==0){
+	
+	}
+}
+
+throw keyword:
+=============
+this keyword is used to throw an instance(object) of an exception class. it is used inside the method.
+public in divide(int a, int b) throws ArithematicException{
+	if(b==0){
+		throw new ArithematicException("you are dividing a number by zero"); //object of exception
+	}
+	return a/b;
+}
+
+
+Custom Exceptions:
+==================
+To create a custom Exception class, create a java class and extend this class with exception or runtime exception class.
+
+class AgeNotValidException extends Exception{ //this class will behave as a checked exception.
+
+}
+
+class AgeNotValidException extends RuntimeException{
+	//it is llike a unchecked/ runtime Exception
+}

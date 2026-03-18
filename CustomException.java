@@ -17,8 +17,8 @@ class CustomException{
 	}
 }
 
-class InvalidAgeException extends Exception{
-// for checked
+class InvalidAgeException extends RuntimeException{ // for unchecked
+//class InvalidAgeException extends Exception{// for checked
 	public InvalidAgeException(String msg){
 		super(msg); //it is intialize with super class (exception) constructor with one argument
 	}
