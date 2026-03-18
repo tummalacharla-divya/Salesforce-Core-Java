@@ -24,26 +24,27 @@ The class should handle potential issues like array overflow (when adding elemen
 */
 import java.util.*;
 class CustomListOfStrings{
-	public static List<String> list=new ArrayList<>();
+	List<String> list=new ArrayList<>();
 	public static void add(String element){
 		list.add(element);
 		System.out.println("element added successfully");
 	}
 	public static boolean remove(String element){
 		if(list.contains(element)){
-			return list.remove(element);
+			list.remove(element);
+			return true;
 		}
 		return false;
 	}
 	public static void update(int index,String newElement){
 		try{
-			if(index<0 || index>list.size()){
-				System.out.println("invalid index"); 
+			if(index>list.size()){
+				throw new IndexOutOfBoundsException("invalid index"); 
 			}
-			list.set(index,newElement);
+			list.add(newElement,index);
 			System.out.println("newElement is added at given index");
 		}catch(IndexOutOfBoundsException e){
-			System.out.println(e.getMessage());
+			System.out.println("given index is invalid.");
 		}
 	}
 	public static void display(){
@@ -52,14 +53,13 @@ class CustomListOfStrings{
 	
 	public static void main(String[] args){
 		Scanner sc=new Scanner(System.in);
-		int choice;
 		do{
 			System.out.println("1. Add element into list");
 			System.out.println("2.remove element from a list");
 			System.out.println("3. update element into a list");
 			System.out.println("4. display element in the list");
 			System.out.println("5. exit");
-			choice=sc.nextInt();
+			char choice=sc.next().charAt(0);
 			switch(choice){
 				case 1:System.out.println("Enter the string that you want to enter in a list: ");
 						String s=sc.next();
@@ -68,29 +68,26 @@ class CustomListOfStrings{
 				case 2:System.out.println("Enter the string that you want to remove from a list: ");
 						String r=sc.next();
 						if(remove(r)){
-							System.out.println("String "+r+" is removed successfully");
+							System.out.println("String "+str+" is removed successfully");
 						}
 						else{
 							System.out.println("String not found in the list");
 						}
 						break;
 				case 3:System.out.println("Enter the index: ");
-						int index=sc.nextInt();
 						System.out.println("Enter the string that you want to update: ");
+						int index=sc.nextInt();
 						String str=sc.next();
 						update(index,str);
 						break;
 				case 4:
 						display();
 						break;
-				case 5:
-						System.out.println("user exited");
-						break;
 				default:System.out.println("Invalid choice");
 						break;
 			}
 			
 		
-		}while(choice!=5);
+		}while(ch!=5)
 	}
 }
